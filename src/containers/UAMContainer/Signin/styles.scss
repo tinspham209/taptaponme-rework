@@ -1,0 +1,36 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.ctn-uam {
+  text-align: center;
+  width: 560px;
+  margin: auto;
+  margin-top: 40px;
+
+  @include tabletScreen {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  &__logoImage {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    font-size: 14px;
+    margin-left: auto;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
