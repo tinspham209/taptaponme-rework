@@ -17,7 +17,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.16.0
         with:
-          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new pull request: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Action:* Pull Request"},{"type":"mrkdwn","text":"*Project:* Taptapon.me rework"},{"type":"mrkdwn","text":"*Branch:* master"},{"type":"mrkdwn","text":"*Repo:* <https://github.com/tinspham209/taptaponme-rework/pulls>"},{"type":"mrkdwn","text":"*Created by:* ${{ github.event.pull_request.user.login }}"}]}]}'
+          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new pull request: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Action:* Pull Request"},{"type":"mrkdwn","text":"*Project:* taptaponme-rework"},{"type":"mrkdwn","text":"*Branch:* master"},{"type":"mrkdwn","text":"*Repo:* <https://github.com/tinspham209/taptaponme-rework/pulls|Repo PR>"},{"type":"mrkdwn","text":"*Created by:* ${{ github.event.pull_request.user.login }}"}]}]}'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
