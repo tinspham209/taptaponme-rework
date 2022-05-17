@@ -7,7 +7,11 @@ import MuiTextField from 'src/components/MuiTextField';
 import SocialItem from 'src/components/SocialItem';
 import { IRootState } from 'src/redux/rootReducer';
 import { Callback } from 'src/redux/types';
-import { addUserLinkSocialAsync, updateUserSocialLinkAsync } from 'src/redux/userRedux/actions';
+import {
+  addUserLinkSocialAsync,
+  deleteUserSocialLinkAsync,
+  updateUserSocialLinkAsync,
+} from 'src/redux/userRedux/actions';
 import { SocialUserInfo } from 'src/redux/userRedux/types';
 import { Yup } from 'src/services';
 import { socialList } from 'src/utils/socialUtils';
@@ -22,6 +26,7 @@ const EditSocialDialog: React.FC<Props> = ({
   uid,
   selectedSocial,
   onUpdateSocialLink,
+  onDeleteSocialLink,
 }) => {
   const formRef = React.useRef<FormikProps<SocialUserInfo>>(null);
 
@@ -46,6 +51,18 @@ const EditSocialDialog: React.FC<Props> = ({
     return {
       ...selectedSocial,
     };
+  };
+
+  const handleOnDeleteLink = () => {
+    onDeleteSocialLink({
+      payload: {
+        uid: uid,
+        icon: selectedSocial.icon,
+      },
+      callback: () => {
+        onClose();
+      },
+    });
   };
 
   return (
@@ -80,6 +97,16 @@ const EditSocialDialog: React.FC<Props> = ({
             return (
               <View className={``}>
                 <Grid container spacing={2} alignItems="center">
+                  <Grid item>
+                    <Button
+                      onClick={() => {
+                        handleOnDeleteLink();
+                      }}
+                      isLoading={loading}
+                      type="button">
+                      Xoá
+                    </Button>
+                  </Grid>
                   <Grid item xs={12}>
                     <SocialItem
                       icon={selectedSocial.icon}
@@ -139,6 +166,7 @@ const mapStateToProps = (state: IRootState) => {
 const mapDispatchToProps = {
   onAddUserLinkSocial: addUserLinkSocialAsync.request,
   onUpdateSocialLink: updateUserSocialLinkAsync.request,
+  onDeleteSocialLink: deleteUserSocialLinkAsync.request,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditSocialDialog);

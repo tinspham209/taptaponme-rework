@@ -1,8 +1,11 @@
+import reduceReducers from 'reduce-reducers';
 import { combineReducers } from 'redux';
 import { AsyncState } from 'src/utils/commonAsyncReducer';
-import { createReducer } from 'typesafe-actions';
+import { Action, createReducer, getType } from 'typesafe-actions';
+import { signOutAsync } from '../authRedux/actions';
 import {
   addUserLinkSocialAsync,
+  deleteUserSocialLinkAsync,
   getSocialUserInfoAsync,
   getUserInfoAsync,
   getUsersAsync,
@@ -96,15 +99,15 @@ export const userSocialReducer = createReducer<AsyncState<SocialUserInfo[]>>(ini
     loading: false,
     error: action.payload,
   }))
-  .handleAction(updateUserSocialLinkAsync.request, state => ({
+  .handleAction([updateUserSocialLinkAsync.request, deleteUserSocialLinkAsync.request], state => ({
     ...state,
     loading: true,
   }))
-  .handleAction(updateUserSocialLinkAsync.success, (state, action) => ({
+  .handleAction([updateUserSocialLinkAsync.success, deleteUserSocialLinkAsync.success], (state, action) => ({
     ...state,
     loading: false,
   }))
-  .handleAction(updateUserSocialLinkAsync.failure, (state, action) => ({
+  .handleAction([updateUserSocialLinkAsync.failure, deleteUserSocialLinkAsync.failure], (state, action) => ({
     ...state,
     loading: false,
     error: action.payload,
@@ -126,8 +129,25 @@ export const usersReducer = createReducer<AsyncState<UserInfo[]>>(initialState.u
     error: action.payload,
   }));
 
-export default combineReducers<IUserInfoState>({
+const combinedReducers = combineReducers<IUserInfoState>({
   user: userReducer,
   social: userSocialReducer,
   users: usersReducer,
 });
+
+const resetStateReducer = (state: IUserInfoState = initialState, action: Action) => {
+  const { social, user, users } = initialState;
+  switch (action.type) {
+    case getType(signOutAsync.success):
+      return {
+        social,
+        user,
+        users,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default reduceReducers<any>(initialState, combinedReducers, resetStateReducer);

@@ -2,6 +2,7 @@ import { createAsyncAction } from 'typesafe-actions';
 import { Callback } from '../types';
 import {
   AddUserLinkSocialPayload,
+  DeleteUserLinkSocialPayload,
   GetUserInfoPayload,
   SocialUserInfo,
   UpdateUserNameAndCardNumberPayload,
@@ -64,3 +65,9 @@ export const updateUserSocialLinkAsync = createAsyncAction(
   'user/UPDATE_USER_SOCIAL_LINK_SUCCESS',
   'user/UPDATE_USER_SOCIAL_LINK_FAILURE',
 )<{ payload: SocialUserInfo; callback?: Callback }, void, Error>();
+
+export const deleteUserSocialLinkAsync = createAsyncAction(
+  'user/DELETE_USER_SOCIAL_LINK_REQUEST',
+  'user/DELETE_USER_SOCIAL_LINK_SUCCESS',
+  'user/DELETE_USER_SOCIAL_LINK_FAILURE',
+)<{ payload: DeleteUserLinkSocialPayload; callback?: Callback }, void, Error>();

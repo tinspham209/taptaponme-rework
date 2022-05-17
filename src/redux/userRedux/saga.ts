@@ -4,6 +4,7 @@ import { Apis } from 'src/services/api';
 import { toastifyErrorSaga } from '../commonSagas/toastifyFailureSaga';
 import {
   addUserLinkSocialAsync,
+  deleteUserSocialLinkAsync,
   getSocialUserInfoAsync,
   getUserInfoAsync,
   getUsersAsync,
@@ -134,6 +135,26 @@ function* updateUserSocialLink(api, { payload: params }: any) {
   }
 }
 
+function* deleteUserSocialLink(api, { payload: params }: any) {
+  const response = yield call(api, params?.payload);
+  try {
+    yield put(deleteUserSocialLinkAsync.success(response));
+    yield put(
+      getSocialUserInfoAsync.request({
+        payload: {
+          uid: params.payload.uid,
+        },
+      }),
+    );
+    Toastify.success('Xoá đường link thành công');
+    if (params?.callback) {
+      params.callback();
+    }
+  } catch (error) {
+    yield all([deleteUserSocialLinkAsync.failure(error), toastifyErrorSaga(error)]);
+  }
+}
+
 export default function authSaga(apiInstance: Apis) {
   return [
     takeLatest(getUsersAsync.request, getUsers, apiInstance.getUsers),
@@ -147,5 +168,6 @@ export default function authSaga(apiInstance: Apis) {
     takeLatest(updateUserTabInfoAsync.request, updateUserTabInfo, apiInstance.updateUserTabInfo),
     takeLatest(addUserLinkSocialAsync.request, addUserLinkSocial, apiInstance.addUserLinkSocial),
     takeLatest(updateUserSocialLinkAsync.request, updateUserSocialLink, apiInstance.updateUserSocialLink),
+    takeLatest(deleteUserSocialLinkAsync.request, deleteUserSocialLink, apiInstance.deleteUserSocialLink),
   ];
 }

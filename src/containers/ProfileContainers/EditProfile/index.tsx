@@ -122,7 +122,7 @@ const EditProfile: React.FC<Props> = ({ authUser, userInfo, onGetUserInfo, socia
               <Text size={30} className={`fw-bold text-align-center`}>
                 {userInfo?.name}
               </Text>
-              <Text size={20} className={`fw-medium text-align-center`}>
+              <Text size={18} className={`fw-normal text-align-center`}>
                 {userInfo?.description}
               </Text>
               <View className={`mt-32 social-wrapper`}>

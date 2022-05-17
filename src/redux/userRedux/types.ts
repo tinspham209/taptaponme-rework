@@ -65,3 +65,8 @@ export type SocialUserInfo = {
   url: string;
   uid?: string;
 };
+
+export type DeleteUserLinkSocialPayload = {
+  uid: string;
+  icon: string;
+};

@@ -8,6 +8,7 @@ import { Course, GetCourseDetailParam } from 'src/redux/coursesRedux/types';
 import { EditOrderPayload, GetOrderPayload, OrderDetail } from 'src/redux/ordersRedux/types';
 import {
   AddUserLinkSocialPayload,
+  DeleteUserLinkSocialPayload,
   GetUserInfoPayload,
   SocialUserInfo,
   UpdateUserNameAndCardNumberPayload,
@@ -185,6 +186,16 @@ const create = (baseURL = appConfig.API_URL) => {
     }
   };
 
+  const deleteUserSocialLink = async (params: DeleteUserLinkSocialPayload) => {
+    const dbUserSocial = fireStore.collection(DB_COLLECTION.USERS).doc(params.uid).collection(DB_COLLECTION.SOCIAL);
+    try {
+      return await dbUserSocial.doc(params.icon).delete();
+    } catch (error) {
+      console.error('error: ', error);
+      return error;
+    }
+  };
+
   // ====================== END User Info ======================
 
   // ====================== Orders ======================
@@ -325,6 +336,7 @@ const create = (baseURL = appConfig.API_URL) => {
     updateUserTabInfo,
     addUserLinkSocial,
     updateUserSocialLink,
+    deleteUserSocialLink,
     // ====================== END User Info ======================
 
     // ====================== Orders ======================
