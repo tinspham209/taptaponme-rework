@@ -5,14 +5,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { SEO } from 'src/appConfig/constants';
 import { IMAGES } from 'src/appConfig/images';
 import { PATHS } from 'src/appConfig/paths';
-import { Image, Text, View } from 'src/components/common';
+import { Button, Image, Text, View } from 'src/components/common';
 import SocialItem from 'src/components/SocialItem';
 import { setShowNavbar } from 'src/redux/commonRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
 import { getSocialUserInfoAsync, getUsersAsync } from 'src/redux/userRedux/actions';
 import { isEmpty } from 'src/validations';
+import vCardsJS from 'vcards-js';
 import SplashScreen from '../StartupContainers/SplashScreen';
 import './styles.scss';
+
+const vCard = vCardsJS();
+
 const clsPrefix = 'ctn-info';
 
 const Info: React.FC<Props> = ({
@@ -51,6 +55,26 @@ const Info: React.FC<Props> = ({
     }
   }, [onGetSocialUserInfo, userInfo]);
 
+  const handleSaveContact = () => {
+    if (userInfo && socialUserInfo.some(social => social.icon === 'phoneNumber')) {
+      vCard.lastName = userInfo.name;
+      vCard.workPhone = `+84${socialUserInfo.find(social => social.icon === 'phoneNumber')?.url}`;
+      vCard.url = `https://taptapon.me/${userInfo.username}`;
+      vCard.note = userInfo.description ? `${userInfo.description}` : '';
+      vCard.organization = 'TaptapOn.me';
+      vCard.email = socialUserInfo.find(social => social.icon === 'email')?.url;
+
+      const vCardString = vCard.getFormattedString();
+
+      const blob = new Blob([vCardString], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${userInfo.name}-taptaponme.vcf`;
+      link.click();
+    }
+  };
+
   return (
     <View className={`${clsPrefix}`}>
       {loading && <SplashScreen />}
@@ -72,20 +96,34 @@ const Info: React.FC<Props> = ({
                 <Text className={`text-is-16 fw-medium`}>Không tìm thấy dữ liệu người dùng</Text>
               </View>
             )}
-            {!isEmpty(socialUserInfo) &&
-              socialUserInfo
-                .sort((prev, cur) => prev.order - cur.order)
-                .map((social, index) => {
-                  return (
-                    <SocialItem
-                      icon={social.icon}
-                      title={social.title}
-                      url={social.url}
-                      key={`${social.title}-${index}`}
-                    />
-                  );
-                })}
+            {!isEmpty(socialUserInfo) && (
+              <>
+                {socialUserInfo.some(social => social.icon === 'phoneNumber') && (
+                  <Button
+                    isFull
+                    onClick={() => {
+                      handleSaveContact();
+                    }}
+                    className="mb-16">
+                    Lưu danh bạ
+                  </Button>
+                )}
+                {socialUserInfo
+                  .sort((prev, cur) => prev.order - cur.order)
+                  .map((social, index) => {
+                    return (
+                      <SocialItem
+                        icon={social.icon}
+                        title={social.title}
+                        url={social.url}
+                        key={`${social.title}-${index}`}
+                      />
+                    );
+                  })}
+              </>
+            )}
           </View>
+
           <Link to={PATHS.signIn}>
             <Image className="ctn-uam__logoImage mt-64" alt="logo" src={IMAGES.logoFullBlack} />
           </Link>
