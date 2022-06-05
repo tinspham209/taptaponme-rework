@@ -63,6 +63,7 @@ const Info: React.FC<Props> = ({
       vCard.note = userInfo.description ? `${userInfo.description}` : '';
       vCard.organization = 'TaptapOn.me';
       vCard.email = socialUserInfo.find(social => social.icon === 'email')?.url;
+      vCard.photo.attachFromUrl('https://taptapon.me/logo192.png', 'png');
 
       const vCardString = vCard.getFormattedString();
 
