@@ -13,4 +13,6 @@ export const PATHS = {
   courses: `/courses`,
   myProfile: `/user/me`,
   editProfile: `/user/me/edit`,
+
+  products: `/products`,
 };

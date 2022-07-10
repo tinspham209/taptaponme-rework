@@ -13,15 +13,14 @@ import { Navigator } from 'src/services';
 import Course from './Course';
 import CoursesContainer from './CoursesContainers';
 import Home from './Home';
-import Info from './Info';
 import EditProfile from './ProfileContainers/EditProfile';
 import MyProfile from './ProfileContainers/MyProfile';
+import Root from './Root';
 import LoadingContainer from './StartupContainers/LoadingContainer';
 import NotFound from './StartupContainers/NotFound';
 import SplashScreen from './StartupContainers/SplashScreen';
 import ToastContainer from './StartupContainers/ToastContainer';
 import Signin from './UAMContainer/Signin';
-import Signup from './UAMContainer/Signup';
 
 const Routing: React.FC<{ location: Location }> = props => {
   Navigator.setTopHistory(useHistory());
@@ -32,10 +31,9 @@ const Routing: React.FC<{ location: Location }> = props => {
         <Navbar />
         <Sidebar />
         <Switch location={props.location}>
-          <Route path={PATHS.root} render={() => <Redirect to={PATHS.signIn} />} exact />
-          <Route path={PATHS.signIn} component={Signin} />
-          <Route path={PATHS.signUp} component={Signup} />
-          <Route path={`/:id`} exact component={Info} />
+          <Route exact path={PATHS.root} component={Root} />
+          <Route exact path={PATHS.signIn} component={Signin} />
+          <Route exact path={`${PATHS.products}/:id`} render={() => <Redirect to={PATHS.root} />} />
 
           <CustomRoute pageRequiredAuth exact path={PATHS.home} component={Home} />
           <CustomRoute pageRequiredAuth exact path={PATHS.myProfile} component={MyProfile} />

@@ -55,3 +55,5 @@ export const COLOR_CODE = {
   WARNING: '#f4762f',
   DANGER: '#ee2d2d',
 };
+
+export const BACKGROUND_IMAGE_URL = `https://firebasestorage.googleapis.com/v0/b/taptaponme.appspot.com/o/Group%2023.webp?alt=media&token=0d1d2a77-312f-4c71-ab3c-35462ba4426f`;

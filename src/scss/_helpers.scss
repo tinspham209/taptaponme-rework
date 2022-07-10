@@ -71,6 +71,14 @@ $radiusSizes: 4, 8, 16, 24, 32, 64;
   font-style: italic;
 }
 
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
 // Text align
 $textAligns: center, left, right;
 
@@ -97,6 +105,10 @@ $textAligns: center, left, right;
 
 .full-height {
   height: 100%;
+}
+
+.max-width-1200 {
+  max-width: 1200px;
 }
 
 .hide-on-mobile {
@@ -361,4 +373,9 @@ html {
 
 .cursor-not-allowed {
   cursor: not-allowed;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
