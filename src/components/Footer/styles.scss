@@ -2,6 +2,6 @@
 @use '~src/scss/mixin' as *;
 
 .cmp-footer {
-  font-size: 14px;
   padding: 8px 0;
+  border-top: 2px dashed #e8e8e8;
 }

@@ -22,6 +22,7 @@ const clsPrefix = 'ctn-info';
 const Info: React.FC<Props> = ({
   onGetUsers,
   users,
+
   loading,
   onGetSocialUserInfo,
   socialUserInfo,
@@ -38,6 +39,7 @@ const Info: React.FC<Props> = ({
   React.useEffect(() => {
     onGetUsers();
   }, [onGetUsers, pathname]);
+
   const userInfo = users.find(
     user =>
       _.lowerCase(user.username) === _.lowerCase(pathname) || _.lowerCase(user.cardNumber) === _.lowerCase(pathname),
@@ -125,7 +127,11 @@ const Info: React.FC<Props> = ({
             )}
           </View>
 
-          <Link to={PATHS.signIn}>
+          <Link
+            to={PATHS.root}
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}>
             <Image className="ctn-uam__logoImage mt-64" alt="logo" src={IMAGES.logoFullBlack} />
           </Link>
         </View>

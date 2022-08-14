@@ -35,9 +35,11 @@ const WhatShare: React.FC<Props> = () => {
               Và còn nhiều hơn thế nữa...
             </Text>
 
-            <Button variant="default" className="mt-36">
-              Mua ngay
-            </Button>
+            <a href="https://m.me/taptapon.me" target="__blank" rel="noopener noreferrer">
+              <Button variant="default" className="mt-36">
+                Mua ngay
+              </Button>
+            </a>
           </View>
         </Grid>
         <Grid item container xs={12} sm={6} justifyContent="center">
