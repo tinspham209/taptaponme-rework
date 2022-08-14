@@ -13,6 +13,7 @@ import { Navigator } from 'src/services';
 import Course from './Course';
 import CoursesContainer from './CoursesContainers';
 import Home from './Home';
+import InfoContainer from './Info';
 import EditProfile from './ProfileContainers/EditProfile';
 import MyProfile from './ProfileContainers/MyProfile';
 import Root from './Root';
@@ -32,7 +33,9 @@ const Routing: React.FC<{ location: Location }> = props => {
         <Sidebar />
         <Switch location={props.location}>
           <Route exact path={PATHS.root} component={Root} />
+
           <Route exact path={PATHS.signIn} component={Signin} />
+
           <Route exact path={`${PATHS.products}/:id`} render={() => <Redirect to={PATHS.root} />} />
 
           <CustomRoute pageRequiredAuth exact path={PATHS.home} component={Home} />
@@ -42,6 +45,7 @@ const Routing: React.FC<{ location: Location }> = props => {
 
           <Route exact path={`${PATHS.courses}/:id`} component={Course} />
 
+          <Route path={`${PATHS.root}:id`} component={InfoContainer} />
           <Route component={NotFound} />
         </Switch>
         <LoadingContainer />
