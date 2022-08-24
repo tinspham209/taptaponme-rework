@@ -38,7 +38,7 @@ const SignupSchema = Yup.object().shape({
     }),
   username: Yup.string().required(),
   name: Yup.string().required(),
-  cardNumber: Yup.string().required(),
+  cardNumber: Yup.string().notRequired(),
 });
 
 const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
@@ -99,6 +99,7 @@ const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
                   errorMessage={touched.email && errors.email ? errors.email : ''}
                   placeholder="Enter your email"
                   className="mb-24"
+                  autoComplete="asdasdasdasd"
                   required
                   {...getFieldProps('email')}
                 />
@@ -107,6 +108,7 @@ const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
                   errorMessage={touched.name && errors.name ? errors.name : ''}
                   placeholder="Enter your name"
                   className="mb-24"
+                  autoComplete="asdasdasdasd"
                   required
                   {...getFieldProps('name')}
                 />
@@ -115,6 +117,7 @@ const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
                   errorMessage={touched.username && errors.username ? errors.username : ''}
                   placeholder="Enter your username"
                   className="mb-24"
+                  autoComplete="asdasdasdasd"
                   required
                   {...getFieldProps('username')}
                 />
@@ -123,7 +126,8 @@ const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
                   errorMessage={touched.cardNumber && errors.cardNumber ? errors.cardNumber : ''}
                   placeholder="Enter your card number"
                   className="mb-24"
-                  required
+                  autoComplete="asdasdasdasd"
+                  // required
                   {...getFieldProps('cardNumber')}
                 />
                 <MuiTextField
@@ -133,15 +137,20 @@ const SignUp: React.FC<Props> = ({ error, loading, isSigningIn, onSignUp }) => {
                   className="mb-24"
                   isPassword
                   required
+                  autoComplete="asdasdasdasd"
                   {...getFieldProps('password')}
                 />
                 <ValidatePassword password={values.password} />
 
-                <Button type="submit" isLoading={loading || isSigningIn} onClick={() => handleSubmit()}>
+                <Button
+                  type="button"
+                  isLoading={loading || isSigningIn}
+                  className="mt-16"
+                  onClick={() => handleSubmit()}>
                   TẠO TÀI KHOẢN
                 </Button>
 
-                <View align="center" justify="center" isRow className="mt-32">
+                <View align="center" justify="center" isRow className="my-32">
                   <Text className={`text-is-16 mr-8`}>Nếu bạn đã có tài khoản.</Text>
                   <Link to={PATHS.signIn} className="text-is-16 has-text-primary">
                     Đăng nhập

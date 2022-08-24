@@ -22,6 +22,7 @@ import NotFound from './StartupContainers/NotFound';
 import SplashScreen from './StartupContainers/SplashScreen';
 import ToastContainer from './StartupContainers/ToastContainer';
 import Signin from './UAMContainer/Signin';
+import Signup from './UAMContainer/Signup';
 
 const Routing: React.FC<{ location: Location }> = props => {
   Navigator.setTopHistory(useHistory());
@@ -35,6 +36,7 @@ const Routing: React.FC<{ location: Location }> = props => {
           <Route exact path={PATHS.root} component={Root} />
 
           <Route exact path={PATHS.signIn} component={Signin} />
+          <Route exact path={PATHS.signUp} component={Signup} />
 
           <Route exact path={`${PATHS.products}/:id`} render={() => <Redirect to={PATHS.root} />} />
 
