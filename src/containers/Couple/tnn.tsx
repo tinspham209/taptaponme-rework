@@ -41,15 +41,15 @@ const TnnContainer: React.FC<Props> = ({ onSetShowNavbar }) => {
           {[
             {
               avatar:
-                'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/328858952_2759633294171168_2970080231470887563_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=l_--sJfOS84AX_x8ssi&_nc_ht=scontent.fdad1-4.fna&oh=00_AfANszn5nzxPrMwJ6AE6-gLisPbsWyaf_KfjFUBUNsfr_w&oe=63EF4D31',
-              name: 'John Doe',
+                'https://firebasestorage.googleapis.com/v0/b/taptaponme.appspot.com/o/20220813_095906.png?alt=media&token=44cdb192-4d26-4897-bb83-d3a4b7030d3d',
+              name: 'Tins Tins',
               gender: <BiMaleSign color={'#fff'} />,
               horoscope: 'Xử Nữ',
             },
             {
               avatar:
-                'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/329691413_1308532123336070_688399326453957155_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=uKNiwCWekSgAX8ml6JS&_nc_ht=scontent.fdad1-4.fna&oh=00_AfDhpgDxzOtvh5YIuO0F6kNaH_MdaUa9LMZ_mqrV4lwPzQ&oe=63EF1095',
-              name: 'Vip Pro',
+                'https://firebasestorage.googleapis.com/v0/b/taptaponme.appspot.com/o/FB_IMG_1662222471397.jpg?alt=media&token=6748a2b6-321f-4f4f-a58f-ceb8ee94dfbe',
+              name: 'Mei Ngọc',
               gender: <BiFemaleSign color={'#fff'} />,
               horoscope: 'Ma Kết',
             },
@@ -64,9 +64,9 @@ const TnnContainer: React.FC<Props> = ({ onSetShowNavbar }) => {
                   }}
                 />
               </View>
-              <View isRow>
+              <View isRow className={`${clsPrefix}__people-person--name`}>
                 <i>{item.gender}</i>
-                <Text className="text-align-center has-text-white">{item.name}</Text>
+                <Text className="text-align-center has-text-white fw-bold">{item.name}</Text>
               </View>
             </View>
           ))}

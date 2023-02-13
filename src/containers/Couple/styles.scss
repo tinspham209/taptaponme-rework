@@ -8,29 +8,36 @@
     margin: -64px auto 0 auto;
 
     &__preview {
-      background-image: url('https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/329997737_1253099758612730_5731496059839688469_n.png?stp=dst-png_p720x720&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=ZEi_VnMTAKcAX-Hsrqp&_nc_ht=scontent.fdad1-4.fna&oh=00_AfDbLYTzyAYE3bmq8Sk9qkSXO3C0SsuUsM1w9zvrxvMdjw&oe=63EDC62E');
-      background-position: center;
+      background-image: url('https://firebasestorage.googleapis.com/v0/b/taptaponme.appspot.com/o/20220809_203824.jpg?alt=media&token=5782fcf9-a747-47ef-af11-ca28798824c5');
+      background-position: 20%;
       background-repeat: no-repeat;
       background-size: cover;
+      min-height: 90vh;
     }
 
     &__count {
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      border: 2px solid red;
+      border: 4px solid white;
       padding: 32px;
       margin: 56px auto;
       background-color: rgba(0, 0, 0, 0.6);
     }
     &__people {
-      margin: 0 24px;
+      margin: 72px 24px 128px 24px;
 
       &-person {
         &--avatar {
-          width: 64px !important;
-          height: 64px !important;
+          width: 72px !important;
+          height: 72px !important;
           border: 2px solid white;
+        }
+        &--name {
+          margin-top: 16px;
+          padding: 4px 8px;
+          border-radius: 24px;
+          background-color: rgba(0, 0, 0, 0.2);
         }
       }
     }
@@ -48,7 +55,7 @@
     background-color: #f20044;
     position: relative;
     box-shadow: 10px 10px 90px #f20044;
-    animation: animHeart 0.3s linear infinite;
+    animation: animHeart 0.6s linear infinite;
 
     @keyframes animHeart {
       0% {
@@ -90,7 +97,7 @@
 
 .ctn-couple-music-player {
   background-color: white;
-  margin: 128px auto 24px auto;
+  margin: 24px auto 24px auto;
   position: relative;
   border-radius: 16px;
 
