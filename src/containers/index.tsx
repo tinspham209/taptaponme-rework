@@ -10,6 +10,7 @@ import { exchangeTokenAsync, setToken } from 'src/redux/authRedux/actions';
 import { setShowSidebar } from 'src/redux/commonRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
 import { Navigator } from 'src/services';
+import TnnContainer from './Couple/tnn';
 import Course from './Course';
 import CoursesContainer from './CoursesContainers';
 import Home from './Home';
@@ -46,6 +47,8 @@ const Routing: React.FC<{ location: Location }> = props => {
           <CustomRoute pageRequiredAuth exact path={PATHS.coursesManagement} component={CoursesContainer} />
 
           <Route exact path={`${PATHS.courses}/:id`} component={Course} />
+
+          <Route path={`${PATHS.couple}/t-and-n`} component={TnnContainer} />
 
           <Route path={`${PATHS.root}:id`} component={InfoContainer} />
           <Route component={NotFound} />

@@ -15,4 +15,6 @@ export const PATHS = {
   editProfile: `/user/me/edit`,
 
   products: `/products`,
+
+  couple: '/couple',
 };

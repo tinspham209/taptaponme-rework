@@ -1,0 +1,226 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.ctn-couple {
+  &-tnn {
+    width: 100%;
+    max-width: 600px;
+    margin: -64px auto 0 auto;
+
+    &__preview {
+      background-image: url('https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/329997737_1253099758612730_5731496059839688469_n.png?stp=dst-png_p720x720&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=ZEi_VnMTAKcAX-Hsrqp&_nc_ht=scontent.fdad1-4.fna&oh=00_AfDbLYTzyAYE3bmq8Sk9qkSXO3C0SsuUsM1w9zvrxvMdjw&oe=63EDC62E');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &__count {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid red;
+      padding: 32px;
+      margin: 56px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    &__people {
+      margin: 0 24px;
+
+      &-person {
+        &--avatar {
+          width: 64px !important;
+          height: 64px !important;
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+}
+
+.ctn-couple-heart {
+  &-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+  &-heart {
+    height: 50px;
+    width: 50px;
+    background-color: #f20044;
+    position: relative;
+    box-shadow: 10px 10px 90px #f20044;
+    animation: animHeart 0.3s linear infinite;
+
+    @keyframes animHeart {
+      0% {
+        transform: rotate(-45deg) scale(1.07);
+      }
+
+      80% {
+        transform: rotate(-45deg) scale(1);
+      }
+
+      100% {
+        transform: rotate(-45deg) scale(0.8);
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      background-color: #f20044;
+      box-shadow: -10px 10px 90px #f20044;
+      top: -50%;
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      box-shadow: 10px -10px 90px #f20044;
+      height: 50px;
+      width: 50px;
+      background-color: #f20044;
+      right: -50%;
+      border-radius: 50%;
+    }
+  }
+}
+
+.ctn-couple-music-player {
+  background-color: white;
+  margin: 128px auto 24px auto;
+  position: relative;
+  border-radius: 16px;
+
+  .player-pause {
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 999;
+    position: relative;
+  }
+
+  .music-cover {
+    position: relative;
+    width: 120px;
+    height: 100px;
+    & img {
+      position: absolute;
+      top: -44px;
+      left: 0;
+      border-radius: 50%;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: -54px;
+      left: -10px;
+      background-color: white;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50px;
+      background-color: #ccc;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid white;
+      z-index: 1;
+    }
+
+    &.active {
+      & img {
+        animation: rotateAlbumArt 3s linear 0s infinite forwards;
+      }
+      @keyframes rotateAlbumArt {
+        0% {
+          transform: rotateZ(0);
+        }
+        100% {
+          transform: rotateZ(360deg);
+        }
+      }
+    }
+  }
+
+  .playButton {
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0px 16px;
+
+    & svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+      color: #d6dee7;
+      font-size: 26px;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+
+  .player-track {
+    position: absolute;
+    top: 0;
+    padding: 13px 22px 10px 184px;
+    background-color: #fff7f7;
+    border-radius: 16px 16px 0 0;
+    transition: 0.3s all ease-in-out;
+    width: 100%;
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+
+      top: -102px;
+      z-index: 9;
+    }
+
+    .timeline {
+      height: 8px;
+      border-radius: 4px;
+    }
+  }
+
+  .album-name {
+    color: #54576f;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .track-name {
+    color: #acaebd;
+    font-size: 13px;
+    margin: 2px 0 13px 0;
+  }
+
+  .track-time {
+    height: 12px;
+    margin-bottom: 3px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .current-time,
+  .track-length {
+    font-size: 11px;
+    border-radius: 10px;
+    transition: 0.3s ease all;
+  }
+
+  .track-time.active .current-time,
+  .track-time.active .track-length {
+    color: #f86d92;
+    background-color: transparent;
+  }
+}
