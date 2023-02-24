@@ -62,9 +62,9 @@ const MyProfile: React.FC<Props> = ({ authUser, userInfo, onGetUserInfo, socialU
             <Button variant="default">Chỉnh sửa trang</Button>
           </Link>
         </View>
-        <View className={`mt-32 social-wrapper`}>
+        <View className={`mt-32 so-cial-wrapper`}>
           {isEmpty(socialUserInfo) && (
-            <View align="center" justify="center" className={`social-empty mt-24`}>
+            <View align="center" justify="center" className={`so-cial-empty mt-24`}>
               <Text className={`text-is-16 fw-medium`}>Không tìm thấy dữ liệu người dùng</Text>
             </View>
           )}

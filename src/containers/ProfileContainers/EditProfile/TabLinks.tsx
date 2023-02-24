@@ -35,9 +35,9 @@ const TabLinks: React.FC<Props> = ({ authUser, userInfo, onGetSocialUserInfo, so
       <Button icon={<Add />} onClick={() => setOpenAddLinkDialog(true)}>
         THÊM LINK
       </Button>
-      <View className={`mt-32 social-wrapper`}>
+      <View className={`mt-32 so-cial-wrapper`}>
         {isEmpty(socialUserInfo) && (
-          <View align="center" justify="center" className={`social-empty mt-24`}>
+          <View align="center" justify="center" className={`so-cial-empty mt-24`}>
             <Text className={`text-is-16 fw-medium`}>Không tìm thấy dữ liệu người dùng</Text>
           </View>
         )}
@@ -60,7 +60,6 @@ const TabLinks: React.FC<Props> = ({ authUser, userInfo, onGetSocialUserInfo, so
               );
             })}
       </View>
-
       {openAddLinkDialog && <AddLink onClose={() => setOpenAddLinkDialog(false)} />}
       {openEditLinkDialog && (
         <EditSocialDialog
